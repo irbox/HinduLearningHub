@@ -1,4 +1,12 @@
-import { pgTable, text, serial, integer, boolean, timestamp, jsonb } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  serial,
+  integer,
+  boolean,
+  timestamp,
+  jsonb,
+} from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -70,7 +78,9 @@ export const studyMaterials = pgTable("study_materials", {
   buttonColor: text("button_color").notNull(),
 });
 
-export const insertStudyMaterialSchema = createInsertSchema(studyMaterials).omit({
+export const insertStudyMaterialSchema = createInsertSchema(
+  studyMaterials,
+).omit({
   id: true,
 });
 
@@ -84,7 +94,9 @@ export const featuredContent = pgTable("featured_content", {
   relatedLectures: jsonb("related_lectures").notNull(),
 });
 
-export const insertFeaturedContentSchema = createInsertSchema(featuredContent).omit({
+export const insertFeaturedContentSchema = createInsertSchema(
+  featuredContent,
+).omit({
   id: true,
 });
 

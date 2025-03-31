@@ -54,7 +54,9 @@ export default function Header() {
               <div className="bg-primary text-primary-foreground w-8 h-8 rounded-full flex items-center justify-center text-lg font-semibold">
                 ॐ
               </div>
-              <h1 className="text-lg font-semibold text-primary">Dharma Vidya</h1>
+              <h1 className="text-lg font-semibold text-primary">
+                Dharma Vidya
+              </h1>
             </div>
           </Link>
 
@@ -134,7 +136,9 @@ export default function Header() {
                 <UserPlus className="mr-2 h-4 w-4" /> Sign In
               </Button>
               <Avatar className="bg-primary h-8 w-8 hidden md:flex">
-                <AvatarFallback className="text-primary-foreground">ॐ</AvatarFallback>
+                <AvatarFallback className="text-primary-foreground">
+                  ॐ
+                </AvatarFallback>
               </Avatar>
             </div>
           </div>

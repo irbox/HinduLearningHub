@@ -7,7 +7,7 @@ import type { Book } from "@shared/schema";
 
 type BookCardProps = {
   book: Book;
-}
+};
 
 export default function BookCard({ book }: BookCardProps) {
   return (
@@ -17,14 +17,17 @@ export default function BookCard({ book }: BookCardProps) {
           <div className="flex flex-col md:flex-row gap-6">
             <div className="w-full md:w-1/3 flex justify-center md:justify-start">
               <div className="relative h-60 w-44 mx-auto md:mx-0">
-                <img 
-                  src={book.coverUrl} 
-                  alt={`${book.title} cover`} 
+                <img
+                  src={book.coverUrl}
+                  alt={`${book.title} cover`}
                   className="h-full w-full object-cover rounded-md shadow-md transition-transform group-hover:scale-105"
                 />
                 <div className="absolute top-2 left-2">
                   {book.format && (
-                    <Badge variant="secondary" className="bg-primary/20 text-primary">
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/20 text-primary"
+                    >
                       {book.format}
                     </Badge>
                   )}
@@ -36,10 +39,12 @@ export default function BookCard({ book }: BookCardProps) {
                 </div>
               </div>
             </div>
-            
+
             <div className="w-full md:w-2/3">
-              <h3 className="font-semibold text-lg md:text-xl mb-2 group-hover:text-primary transition-colors">{book.title}</h3>
-              
+              <h3 className="font-semibold text-lg md:text-xl mb-2 group-hover:text-primary transition-colors">
+                {book.title}
+              </h3>
+
               <div className="flex flex-wrap items-center text-sm text-muted-foreground mb-3 gap-2">
                 <span className="font-medium">{book.author}</span>
                 {book.publishYear && (
@@ -58,23 +63,26 @@ export default function BookCard({ book }: BookCardProps) {
                   </>
                 )}
               </div>
-              
+
               <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
                 {book.description}
               </p>
-              
+
               <div className="flex flex-wrap gap-2">
-                <Button 
-                  size="sm" 
+                <Button
+                  size="sm"
                   variant="outline"
                   className="text-primary border-primary/30 hover:bg-primary/10 text-xs rounded transition"
                 >
                   <Download className="h-3 w-3 mr-2" />
                   {book.action || "Read Now"}
                 </Button>
-                
+
                 {book.language && (
-                  <Badge variant="outline" className="text-muted-foreground text-xs">
+                  <Badge
+                    variant="outline"
+                    className="text-muted-foreground text-xs"
+                  >
                     {book.language}
                   </Badge>
                 )}

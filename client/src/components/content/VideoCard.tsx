@@ -7,16 +7,16 @@ import type { Video } from "@shared/schema";
 
 type VideoCardProps = {
   video: Video;
-}
+};
 
 export default function VideoCard({ video }: VideoCardProps) {
   return (
     <Link href={`/videos/${video.id}`}>
       <Card className="overflow-hidden transition-all duration-200 hover:shadow-md hover:scale-[1.02] group cursor-pointer">
         <div className="relative">
-          <img 
-            src={video.thumbnailUrl} 
-            alt={video.title} 
+          <img
+            src={video.thumbnailUrl}
+            alt={video.title}
             className="w-full object-cover h-52 transition-transform group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
@@ -30,7 +30,9 @@ export default function VideoCard({ video }: VideoCardProps) {
           </div>
           {video.platform === "YouTube" && (
             <div className="absolute top-2 left-2">
-              <Badge variant="default" className="bg-red-600 hover:bg-red-700">YouTube</Badge>
+              <Badge variant="default" className="bg-red-600 hover:bg-red-700">
+                YouTube
+              </Badge>
             </div>
           )}
         </div>

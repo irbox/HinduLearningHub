@@ -10,5 +10,5 @@ createRoot(document.getElementById("root")!).render(
     <OnboardingProvider>
       <App />
     </OnboardingProvider>
-  </QueryClientProvider>
+  </QueryClientProvider>,
 );

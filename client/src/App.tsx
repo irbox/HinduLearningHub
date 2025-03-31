@@ -21,12 +21,8 @@ function Router() {
       <Route path="/books/:id?" component={BookPage} />
       <Route path="/search" component={SearchPage} />
       {/* Redirect removed pages to the new locations */}
-      <Route path="/courses">
-        {() => <Redirect to="/videos" />}
-      </Route>
-      <Route path="/materials">
-        {() => <Redirect to="/books" />}
-      </Route>
+      <Route path="/courses">{() => <Redirect to="/videos" />}</Route>
+      <Route path="/materials">{() => <Redirect to="/books" />}</Route>
       <Route component={NotFound} />
     </Switch>
   );

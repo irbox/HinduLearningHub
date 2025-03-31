@@ -4,7 +4,7 @@ import { storage } from "./storage";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API Routes
-  
+
   // Videos
   app.get("/api/videos", async (req, res) => {
     try {
@@ -86,35 +86,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to fetch study materials" });
     }
   });
-  
+
   // Search content
   app.get("/api/search", async (req, res) => {
     try {
-      const query = req.query.q as string || '';
+      const query = (req.query.q as string) || "";
       if (!query.trim()) {
         return res.json({ videos: [], books: [] });
       }
-      
+
       // Check if channels parameter exists (comma-separated list)
       const channelsParam = req.query.channels as string;
       let channelFilters: string[] | undefined;
-      
+
       if (channelsParam) {
-        channelFilters = channelsParam.split(',');
+        channelFilters = channelsParam.split(",");
       } else {
         // Default to Govardhan Math, Puri channel if no channels specified
-        channelFilters = ['Govardhan Math, Puri'];
+        channelFilters = ["Govardhan Math, Puri"];
       }
-      
+
       // Check if we should use live YouTube data
-      const useYouTube = req.query.youtube === 'true';
-      
+      const useYouTube = req.query.youtube === "true";
+
       if (useYouTube) {
         // If using YouTube API directly
-        const channelName = channelFilters && channelFilters.length > 0 ? channelFilters[0] : undefined;
+        const channelName =
+          channelFilters && channelFilters.length > 0
+            ? channelFilters[0]
+            : undefined;
         const videos = await storage.searchYouTubeVideos(query, channelName);
         const books = await storage.getAllBooks(); // Still use our books data
-        
+
         return res.json({ videos, books });
       } else {
         // Use our local storage
@@ -122,39 +125,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
         res.json(results);
       }
     } catch (error) {
-      console.error('Search error:', error);
+      console.error("Search error:", error);
       res.status(500).json({ message: "Failed to search content" });
     }
   });
-  
+
   // YouTube specific endpoints
   app.get("/api/youtube/search", async (req, res) => {
     try {
-      const query = req.query.q as string || '';
+      const query = (req.query.q as string) || "";
       if (!query.trim()) {
         return res.json([]);
       }
-      
+
       const channelName = req.query.channel as string;
       const videos = await storage.searchYouTubeVideos(query, channelName);
       res.json(videos);
     } catch (error) {
-      console.error('YouTube search error:', error);
+      console.error("YouTube search error:", error);
       res.status(500).json({ message: "Failed to search YouTube videos" });
     }
   });
-  
+
   app.get("/api/youtube/channel", async (req, res) => {
     try {
       const channelName = req.query.channel as string;
       if (!channelName) {
         return res.status(400).json({ message: "Channel name is required" });
       }
-      
+
       const videos = await storage.getYouTubeChannelVideos(channelName);
       res.json(videos);
     } catch (error) {
-      console.error('YouTube channel error:', error);
+      console.error("YouTube channel error:", error);
       res.status(500).json({ message: "Failed to get YouTube channel videos" });
     }
   });
